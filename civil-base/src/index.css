@@ -22,14 +22,16 @@ nav {
 
 aside {
   display: flex;
-  flex: 0.3;
+  flex-wrap: wrap;
+  flex-direction: row;
+  width: 20%;
   justify-content: center;
   border: 1px solid red;
 }
 
 #escena {
   display: flex;
-  flex: 0.7;
+  flex: 1;
   justify-content: center;
 }
 
@@ -38,8 +40,13 @@ h1 {
   line-height: 1.1;
   margin: 0;
 }
+.search-box{
+  width: max-content;
+  height: fit-content;
+}
 h2 {
-  margin: 0;
+  display: inline-block;
+  flex: 1;
 }
 h3 {
   margin: 0;

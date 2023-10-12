@@ -14,25 +14,8 @@ class App extends Component{
     this.state = {
       lienzo: null,
       renderer: null,
+      searchField: "",
       profesions: [
-        {
-          name: "Carpenter",
-          id: 1,
-        },
-        {
-          name: "Operator",
-          id: 2,
-        },
-        {
-          name: "Earthworker",
-          id: 3,
-        },
-        {
-          name: "Planner",
-          id: 4,
-        }, 
-      ],
-      profesionsBundle: [
         {
           name: "Carpenter",
           id: 1,
@@ -89,27 +72,29 @@ class App extends Component{
     */
   }
 
+  onSearchChange = (event) => {
+    const searchString = event.target.value.toLocaleLowerCase();
+    console.log(searchString);
+    this.setState(() => {
+      return {searchField: searchString}
+    })
+  }
+
   render () {
-    
+    const filteredProfesions = this.state.profesions.filter((profesion) => {
+      return profesion.name.toLocaleLowerCase().includes(this.state.searchField);
+    });
     return (
       <>
-        <input className='search-box' type='search' placeholder='search' onChange={(event)=>{
-          const searchString = event.target.value.toLocaleLowerCase();
-          console.log(searchString);
-          const filteredProfesions = this.state.profesionsBundle.filter((profesion) => {
-            return profesion.name.toLocaleLowerCase().includes(searchString);
-          });
-          this.setState(() => {
-            return {profesions: filteredProfesions}
-          })
-        }}/>
-
-        {this.state.profesions.map((profesion)=>{
-          return <div id={profesion.id}><h1>{profesion.name}</h1></div>;
-        })}
         <Nav />
         <div id='container'>
-          <Aside />
+          <aside>
+            
+            <input className='search-box' type='search' placeholder='search' onChange={this.onSearchChange}/>
+            {filteredProfesions.map((profesion)=>{
+              return <div id={profesion.id}><h1>{profesion.name}</h1></div>;
+            })}
+          </aside>
           <Canvas />
         </div>
       </>
