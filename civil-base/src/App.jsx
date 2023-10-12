@@ -31,6 +31,24 @@ class App extends Component{
           name: "Planner",
           id: 4,
         }, 
+      ],
+      profesionsBundle: [
+        {
+          name: "Carpenter",
+          id: 1,
+        },
+        {
+          name: "Operator",
+          id: 2,
+        },
+        {
+          name: "Earthworker",
+          id: 3,
+        },
+        {
+          name: "Planner",
+          id: 4,
+        }, 
       ]
     };
   };
@@ -72,11 +90,20 @@ class App extends Component{
   }
 
   render () {
+    
     return (
       <>
         <input className='search-box' type='search' placeholder='search' onChange={(event)=>{
-          console.log(event.target.value);
+          const searchString = event.target.value.toLocaleLowerCase();
+          console.log(searchString);
+          const filteredProfesions = this.state.profesionsBundle.filter((profesion) => {
+            return profesion.name.toLocaleLowerCase().includes(searchString);
+          });
+          this.setState(() => {
+            return {profesions: filteredProfesions}
+          })
         }}/>
+
         {this.state.profesions.map((profesion)=>{
           return <div id={profesion.id}><h1>{profesion.name}</h1></div>;
         })}
