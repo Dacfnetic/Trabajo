@@ -7,6 +7,8 @@ import Aside from './Aside.jsx';
 import Canvas from './Canvas.jsx';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import CardList from './components/card-list/card-list.component.jsx';
+import SearchBox from './components/search-box/search-box.component.jsx';
 
 class App extends Component{
   constructor(){
@@ -31,7 +33,23 @@ class App extends Component{
         {
           name: "Planner",
           id: 4,
+        },
+        {
+          name: "Geotechnist",
+          id: 5,
         }, 
+        {
+          name: "Survey",
+          id: 6,
+        }, 
+        {
+          name: "Plumber",
+          id: 7,
+        },  
+        {
+          name: "Electricist",
+          id: 8,
+        },     
       ]
     };
   };
@@ -81,22 +99,18 @@ class App extends Component{
   }
 
   render () {
-    const filteredProfesions = this.state.profesions.filter((profesion) => {
-      return profesion.name.toLocaleLowerCase().includes(this.state.searchField);
+
+    const {searchField,profesions} = this.state;
+    const {onSearchChange} = this;
+
+    const filteredProfesions = profesions.filter((profesion) => {
+      return profesion.name.toLocaleLowerCase().includes(searchField);
     });
     return (
       <>
         <Nav />
-        <div id='container'>
-          <aside>
-            
-            <input className='search-box' type='search' placeholder='search' onChange={this.onSearchChange}/>
-            {filteredProfesions.map((profesion)=>{
-              return <div id={profesion.id}><h1>{profesion.name}</h1></div>;
-            })}
-          </aside>
-          <Canvas />
-        </div>
+        <SearchBox onSearchChange={onSearchChange} />
+        <CardList filteredProfesions={filteredProfesions}/>
       </>
     )
   }

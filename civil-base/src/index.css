@@ -3,16 +3,6 @@
   margin: 0;
 }
 
-#container {
-  display: flex;
-  border: 1px solid red;
-}
-
-body {
-  margin: 0;
-  overflow: hidden;
-}
-
 nav {
   display: flex;
   flex: 1;
@@ -20,30 +10,12 @@ nav {
   border: 1px solid red;
 }
 
-aside {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  width: 20%;
-  justify-content: center;
-  border: 1px solid red;
-}
-
-#escena {
-  display: flex;
-  flex: 1;
-  justify-content: center;
-}
-
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
   margin: 0;
 }
-.search-box{
-  width: max-content;
-  height: fit-content;
-}
+
 h2 {
   display: inline-block;
   flex: 1;
