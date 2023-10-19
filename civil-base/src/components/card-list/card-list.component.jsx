@@ -1,23 +1,14 @@
 import { Component } from 'react';
 import './card-list.style.css';
+import Card from '../card/card.component';
 
 class CardList extends Component {
-    onClick = (name) =>{
-        alert(name);
-    }
     render(){
         const { filteredProfesions } = this.props;
-        const { onClick } = this;
         return(
             <div className='card-list'>
                 {filteredProfesions.map((profesion)=>{
-                    const { name, id } = profesion;
-                    return(
-                        <div className='card-container' onClick={()=>onClick(name)} key={id}>
-                            <img alt={`profesion ${name}`}/>
-                            <h2>{name}</h2>
-                        </div>
-                    );
+                    return(<Card key={profesion.id} profesion={profesion}/>);
                 })}
             </div>
         );

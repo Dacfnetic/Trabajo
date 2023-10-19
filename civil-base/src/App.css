@@ -13,3 +13,17 @@ body {
   );
   text-align: center;
 }
+
+#seccion{
+  display: flex;
+}
+
+#aside{
+  border: blue solid 5px;
+  width: 40%;
+  
+}
+#otherside{
+  border: yellow solid 5px;
+  width: 60%;
+}
